@@ -32,6 +32,7 @@ public class GenerateReportPanel extends javax.swing.JPanel {
         reportNameTextField = new javax.swing.JTextField();
         reportNameLabel = new javax.swing.JLabel();
         generateReportButton = new javax.swing.JButton();
+        monthComboBox = new javax.swing.JComboBox<>();
 
         filePathTextField.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
 
@@ -56,24 +57,29 @@ public class GenerateReportPanel extends javax.swing.JPanel {
             }
         });
 
+        monthComboBox.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(reportNameLabel)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(reportNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                    .addComponent(filePathTextField))
+                .addContainerGap(295, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(generateReportButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(reportNameLabel)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(reportNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                            .addComponent(filePathTextField))))
                 .addGap(18, 18, 18)
                 .addComponent(filePathButton)
                 .addGap(257, 257, 257))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(519, 519, 519)
-                .addComponent(generateReportButton)
-                .addContainerGap(547, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +93,9 @@ public class GenerateReportPanel extends javax.swing.JPanel {
                     .addComponent(filePathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filePathButton))
                 .addGap(68, 68, 68)
-                .addComponent(generateReportButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generateReportButton)
+                    .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(135, 135, 135))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -105,6 +113,7 @@ public class GenerateReportPanel extends javax.swing.JPanel {
     private javax.swing.JButton filePathButton;
     private javax.swing.JTextField filePathTextField;
     private javax.swing.JButton generateReportButton;
+    private javax.swing.JComboBox<String> monthComboBox;
     private javax.swing.JLabel reportNameLabel;
     private javax.swing.JTextField reportNameTextField;
     // End of variables declaration//GEN-END:variables
