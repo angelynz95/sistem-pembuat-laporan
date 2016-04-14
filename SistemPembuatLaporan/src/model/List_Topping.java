@@ -11,27 +11,27 @@ package model;
  */
 public class List_Topping {
     private int amount;
-    private Dessert dessert;
+    private Topping topping;
     
     public List_Topping() {
         amount = 0;
-        dessert = new Dessert();
+        topping = new Topping();
     }
     
     public int getAmount() {
         return amount;
     }
     
-    public Dessert getDessert() {
-        return dessert;
+    public Topping getTopping() {
+        return topping;
     }
     
     public void setAmount(int amount) {
         this.amount = amount;
     }
     
-    public void setDessert(Dessert dessert) {
-        this.dessert = dessert;
+    public void setTopping(Topping topping) {
+        this.topping = topping;
     }
     
 }

@@ -11,27 +11,27 @@ package model;
  */
 public class List_Snack {
     private int amount;
-    private Dessert dessert;
+    private Snack snack;
     
     public List_Snack() {
         amount = 0;
-        dessert = new Dessert();
+        snack = new Snack();
     }
     
     public int getAmount() {
         return amount;
     }
     
-    public Dessert getDessert() {
-        return dessert;
+    public Snack getSnack() {
+        return snack;
     }
     
     public void setAmount(int amount) {
         this.amount = amount;
     }
     
-    public void setDessert(Dessert dessert) {
-        this.dessert = dessert;
+    public void setSnack(Snack snack) {
+        this.snack = snack;
     }
     
 }

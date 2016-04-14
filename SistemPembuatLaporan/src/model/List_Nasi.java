@@ -11,27 +11,27 @@ package model;
  */
 public class List_Nasi {
     private int amount;
-    private Dessert dessert;
+    private Nasi nasi;
     
     public List_Nasi() {
         amount = 0;
-        dessert = new Dessert();
+        nasi = new Nasi();
     }
     
     public int getAmount() {
         return amount;
     }
     
-    public Dessert getDessert() {
-        return dessert;
+    public Nasi getNasi() {
+        return nasi;
     }
     
     public void setAmount(int amount) {
         this.amount = amount;
     }
     
-    public void setDessert(Dessert dessert) {
-        this.dessert = dessert;
+    public void setNasi(Nasi nasi) {
+        this.nasi = nasi;
     }
     
 }
