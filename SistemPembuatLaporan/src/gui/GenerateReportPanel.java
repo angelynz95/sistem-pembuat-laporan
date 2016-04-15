@@ -5,6 +5,8 @@
  */
 package gui;
 
+import java.util.Calendar;
+
 /**
  *
  * @author angelynz95
@@ -16,6 +18,33 @@ public class GenerateReportPanel extends javax.swing.JPanel {
      */
     public GenerateReportPanel() {
         initComponents();
+        initializeMonthComboBox();
+        initializeYearComboBox();
+    }
+    
+    private void initializeMonthComboBox() {
+        monthComboBox.removeAllItems();
+        monthComboBox.addItem("Januari");
+        monthComboBox.addItem("Februari");
+        monthComboBox.addItem("Maret");
+        monthComboBox.addItem("April");
+        monthComboBox.addItem("Mei");
+        monthComboBox.addItem("Juni");
+        monthComboBox.addItem("Juli");
+        monthComboBox.addItem("Agustus");
+        monthComboBox.addItem("September");
+        monthComboBox.addItem("Oktober");
+        monthComboBox.addItem("November");
+        monthComboBox.addItem("Desember");
+    }
+    
+    private void initializeYearComboBox() {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        
+        yearComboBox.removeAllItems();
+        for (int i = currentYear; i >= currentYear - 5; i--) {
+            yearComboBox.addItem(Integer.toString(i));
+        }
     }
 
     /**

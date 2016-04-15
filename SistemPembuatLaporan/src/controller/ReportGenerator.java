@@ -16,16 +16,19 @@ import org.apache.poi.xssf.usermodel.*;
  * @author angelynz95
  */
 public class ReportGenerator {
+    // Atribut
+    private OrderController orderController;
+    
     // Konstruktor
     public ReportGenerator() {
-        OrderController orderController = new OrderController();
+        orderController = new OrderController();
     }
     
     // Method
     public void generate(String month, String year) {
         Cell cell;
         int countDays = countDays(month, year), totalColumn = 24;
-        String[] tableHeaders;
+        String[] tableHeaders, tableElements;
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet(month.toUpperCase() + "_" + year.substring(year.length() - 2, year.length()));
         XSSFRow row;
@@ -53,6 +56,7 @@ public class ReportGenerator {
         // Membuat isi tabel
         for (int i = 0; i < countDays; i++) {
             row = sheet.createRow(i + 4);
+            tableElements = createTableElements(i, month, year);
         }
     }
     
@@ -118,11 +122,25 @@ public class ReportGenerator {
     }
     
     private String[] createTableElements(int row, String month, String year) {
+        int monthIndex = getMonthIndex(month);
         String[] elements = new String[24];
-        
         elements[0] = row + "-" + month.substring(0, 3) + "-" + year.substring(year.length() - 2, year.length());
         elements[1] = getDay(Integer.toString(row + 1), month, year);
-        
+        elements[3] = Integer.toString(orderController.countSales(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[5] = Integer.toString(orderController.countDiscount(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[7] = "=SUM(D" + (row + 5) + "-E" + (row + 5) + "-F" + (row + 5) + "-G" + (row + 5) + ")";
+        elements[8] = "=H" + (row + 5) + "*0.1";
+        elements[10] = "=SUM(H" + (row + 5) + "+I" + (row + 5) + "+J" + (row + 5) + ")";
+        elements[13] = "=SUM(K" + (row + 5) + "-L" + (row + 5) + "+M" + (row + 5) + ")";
+        elements[14] = Integer.toString(orderController.countBill(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[15] = Integer.toString(orderController.countPax(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[16] = "=SUM(R" + (row + 5) + ":W" + (row + 5) + ")";
+        elements[17] = Integer.toString(orderController.countRamenSold(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[18] = Integer.toString(orderController.countNasiSold(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[19] = Integer.toString(orderController.countToppingSold(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[20] = Integer.toString(orderController.countSnackSold(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[21] = Integer.toString(orderController.countDessertSold(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[22] = Integer.toString(orderController.countMinumanSold(row + 1, monthIndex, Integer.parseInt(year)));
         
         return elements;
     }
