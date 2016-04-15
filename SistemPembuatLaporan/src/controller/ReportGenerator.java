@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import org.apache.poi.ss.usermodel.Cell;
@@ -57,6 +58,19 @@ public class ReportGenerator {
         for (int i = 0; i < countDays; i++) {
             row = sheet.createRow(i + 4);
             tableElements = createTableElements(i, month, year);
+            for (int j = 0; j < totalColumn; j++) {
+                cell = row.createCell(j);
+                cell.setCellValue(tableElements[j]);
+            }
+        }
+        // Membuat footer tabel
+        sheet.addMergedRegion(new CellRangeAddress(countDays + 5, countDays + 5, 0, 1));
+        row = sheet.createRow(countDays + 5);
+        cell = row.createCell(0);
+        cell.setCellValue("JUMLAH");
+        for (char i = 'C'; i < 'W'; i++) {
+            cell = row.createCell(i - 65);
+            cell.setCellValue("=SUM(" + i + "5:" + i + (countDays + 4) + ")");
         }
     }
     
@@ -124,13 +138,23 @@ public class ReportGenerator {
     private String[] createTableElements(int row, String month, String year) {
         int monthIndex = getMonthIndex(month);
         String[] elements = new String[24];
+        
         elements[0] = row + "-" + month.substring(0, 3) + "-" + year.substring(year.length() - 2, year.length());
         elements[1] = getDay(Integer.toString(row + 1), month, year);
+        elements[2] = "";
         elements[3] = Integer.toString(orderController.countSales(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[4] = "";
         elements[5] = Integer.toString(orderController.countDiscount(row + 1, monthIndex, Integer.parseInt(year)));
+        if (elements[5].equals("0")) {
+            elements[5] = "";
+        }
+        elements[6] = "";
         elements[7] = "=SUM(D" + (row + 5) + "-E" + (row + 5) + "-F" + (row + 5) + "-G" + (row + 5) + ")";
         elements[8] = "=H" + (row + 5) + "*0.1";
+        elements[9] = "";
         elements[10] = "=SUM(H" + (row + 5) + "+I" + (row + 5) + "+J" + (row + 5) + ")";
+        elements[11] = "";
+        elements[12] = "";
         elements[13] = "=SUM(K" + (row + 5) + "-L" + (row + 5) + "+M" + (row + 5) + ")";
         elements[14] = Integer.toString(orderController.countBill(row + 1, monthIndex, Integer.parseInt(year)));
         elements[15] = Integer.toString(orderController.countPax(row + 1, monthIndex, Integer.parseInt(year)));
@@ -141,6 +165,7 @@ public class ReportGenerator {
         elements[20] = Integer.toString(orderController.countSnackSold(row + 1, monthIndex, Integer.parseInt(year)));
         elements[21] = Integer.toString(orderController.countDessertSold(row + 1, monthIndex, Integer.parseInt(year)));
         elements[22] = Integer.toString(orderController.countMinumanSold(row + 1, monthIndex, Integer.parseInt(year)));
+        elements[23] = "";
         
         return elements;
     }
