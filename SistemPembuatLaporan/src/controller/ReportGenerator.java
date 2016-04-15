@@ -5,9 +5,10 @@
  */
 package controller;
 
-import java.util.Arrays;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
@@ -26,8 +27,9 @@ public class ReportGenerator {
     }
     
     // Method
-    public void generate(String month, String year) {
+    public void generate(String month, String year, String fileName, String fileLocation) throws FileNotFoundException, IOException {
         Cell cell;
+        FileOutputStream out;
         int countDays = countDays(month, year), totalColumn = 24;
         String[] tableHeaders, tableElements;
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -72,6 +74,10 @@ public class ReportGenerator {
             cell = row.createCell(i - 65);
             cell.setCellValue("=SUM(" + i + "5:" + i + (countDays + 4) + ")");
         }
+        // Save file
+        out = new FileOutputStream(fileLocation + "/" + fileName + ".ods");
+        workbook.write(out);
+        out.close();
     }
     
     private int countDays(String month, String year) {
