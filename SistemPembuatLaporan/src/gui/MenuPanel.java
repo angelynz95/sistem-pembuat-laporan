@@ -68,6 +68,11 @@ public class MenuPanel extends javax.swing.JPanel {
 
         logoutLabel.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         logoutLabel.setText("Keluar");
+        logoutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,6 +94,14 @@ public class MenuPanel extends javax.swing.JPanel {
                 .addGap(104, 104, 104))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
+        // TODO add your handling code here:
+        MainFrame frame = MainFrame.getInstance();
+        frame.setContentPane(new LoginPanel());
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_logoutLabelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

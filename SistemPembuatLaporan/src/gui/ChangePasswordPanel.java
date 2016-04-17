@@ -5,6 +5,8 @@
  */
 package gui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author angelynz95
@@ -46,6 +48,11 @@ public class ChangePasswordPanel extends javax.swing.JPanel {
 
         changePasswordButton.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         changePasswordButton.setText("Ubah");
+        changePasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePasswordButtonActionPerformed(evt);
+            }
+        });
 
         oldPasswordField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
@@ -95,6 +102,11 @@ public class ChangePasswordPanel extends javax.swing.JPanel {
                 .addGap(133, 133, 133))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Pengubahan kata sandi berhasil");
+    }//GEN-LAST:event_changePasswordButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

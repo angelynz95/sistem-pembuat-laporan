@@ -45,6 +45,11 @@ public class LoginPanel extends javax.swing.JPanel {
 
         loginButton.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         loginButton.setText("Masuk");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -76,6 +81,14 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addGap(205, 205, 205))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+        MainFrame frame = MainFrame.getInstance();
+        frame.setContentPane(new MenuPanel());
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_loginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

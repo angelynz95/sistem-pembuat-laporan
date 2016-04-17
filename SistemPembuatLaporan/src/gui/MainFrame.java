@@ -15,6 +15,7 @@ import java.awt.Toolkit;
  * @author angelynz95
  */
 public class MainFrame extends javax.swing.JFrame {
+    private static MainFrame main = new MainFrame();
 
     /**
      * Creates new form MainFrame
@@ -23,6 +24,10 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2 - 20);
+    }
+    
+    public static MainFrame getInstance() {
+        return main;
     }
 
     /**
@@ -82,8 +87,8 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MainFrame main = new MainFrame();
-                main.setContentPane(new MenuPanel());
+                MainFrame main = MainFrame.getInstance();
+                main.setContentPane(new LoginPanel());
                 main.pack();
                 main.setVisible(true);
             }

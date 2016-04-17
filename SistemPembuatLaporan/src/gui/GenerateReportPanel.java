@@ -5,25 +5,33 @@
  */
 package gui;
 
+import controller.ReportGenerator;
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author angelynz95
  */
 public class GenerateReportPanel extends javax.swing.JPanel {
+    // Atribut
+    private ReportGenerator reportGenerator;
 
     /**
      * Creates new form GenerateReportPanel
      */
     public GenerateReportPanel() {
         initComponents();
+        reportGenerator = new ReportGenerator();
         initializeMonthComboBox();
         initializeYearComboBox();
     }
     
+    // Method
     private void initializeMonthComboBox() {
-        monthComboBox.removeAllItems();
         monthComboBox.addItem("Januari");
         monthComboBox.addItem("Februari");
         monthComboBox.addItem("Maret");
@@ -41,7 +49,6 @@ public class GenerateReportPanel extends javax.swing.JPanel {
     private void initializeYearComboBox() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         
-        yearComboBox.removeAllItems();
         for (int i = currentYear; i >= currentYear - 5; i--) {
             yearComboBox.addItem(Integer.toString(i));
         }
@@ -88,10 +95,13 @@ public class GenerateReportPanel extends javax.swing.JPanel {
         });
 
         monthComboBox.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        monthComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthComboBoxActionPerformed(evt);
+            }
+        });
 
         yearComboBox.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,11 +146,33 @@ public class GenerateReportPanel extends javax.swing.JPanel {
 
     private void filePathButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filePathButtonActionPerformed
         // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setCurrentDirectory(new java.io.File("."));
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            filePathTextField.setText(fileChooser.getSelectedFile().toString());
+        }
     }//GEN-LAST:event_filePathButtonActionPerformed
 
     private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
         // TODO add your handling code here:
+        String month = monthComboBox.getSelectedItem().toString();
+        String year = yearComboBox.getSelectedItem().toString();
+        String fileName = reportNameTextField.getText();
+        String fileLocation = filePathTextField.getText();
+        
+        try {
+            reportGenerator.generate(month, year, fileName, fileLocation);
+        } catch (IOException ex) {
+            Logger.getLogger(GenerateReportPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_generateReportButtonActionPerformed
+
+    private void monthComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

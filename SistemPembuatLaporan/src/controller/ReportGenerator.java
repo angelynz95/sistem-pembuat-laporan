@@ -10,6 +10,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -29,13 +31,16 @@ public class ReportGenerator {
     // Method
     public void generate(String month, String year, String fileName, String fileLocation) throws FileNotFoundException, IOException {
         Cell cell;
+        CellStyle style;
         FileOutputStream out;
-        int countDays = countDays(month, year), totalColumn = 24;
+        int countDays = countDays(month, year), totalColumn = 24, totalValue;
         String[] tableHeaders, tableElements;
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet(month.toUpperCase() + "_" + year.substring(year.length() - 2, year.length()));
         XSSFRow row;
         
+        style = workbook.createCellStyle();
+        style.setAlignment(CellStyle.ALIGN_CENTER);
         // Membuat bagian judul
         sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, totalColumn - 1));
         sheet.addMergedRegion(new CellRangeAddress(1, 1, 0, totalColumn - 1));
@@ -43,18 +48,22 @@ public class ReportGenerator {
         row = sheet.createRow(0);
         cell = row.createCell(0);
         cell.setCellValue("DAILY SALES REPORT");
+        cell.setCellStyle(style);
         row = sheet.createRow(1);
         cell = row.createCell(0);
         cell.setCellValue("YAGAMI RAMEN HOUSE DAGO BANDUNG");
+        cell.setCellStyle(style);
         row = sheet.createRow(2);
         cell = row.createCell(0);
         cell.setCellValue(month.toUpperCase().substring(0, 3) + "-" + year.substring(year.length() - 2, year.length()));
+        cell.setCellStyle(style);
         // Membuat header tabel
         row = sheet.createRow(3);
         tableHeaders = createTableHeaders();
         for (int i = 0; i < totalColumn; i++) {
             cell = row.createCell(i);
             cell.setCellValue(tableHeaders[i]);
+            cell.setCellStyle(style);
         }
         // Membuat isi tabel
         for (int i = 0; i < countDays; i++) {
@@ -63,19 +72,31 @@ public class ReportGenerator {
             for (int j = 0; j < totalColumn; j++) {
                 cell = row.createCell(j);
                 cell.setCellValue(tableElements[j]);
+                cell.setCellStyle(style);
             }
         }
         // Membuat footer tabel
-        sheet.addMergedRegion(new CellRangeAddress(countDays + 5, countDays + 5, 0, 1));
-        row = sheet.createRow(countDays + 5);
+        sheet.addMergedRegion(new CellRangeAddress(countDays + 4, countDays + 4, 0, 1));
+        row = sheet.createRow(countDays + 4);
         cell = row.createCell(0);
         cell.setCellValue("JUMLAH");
+        cell.setCellStyle(style);
         for (char i = 'C'; i < 'W'; i++) {
+            totalValue = 0;
+            for (int j = 4; j <= countDays + 3; j++) {
+                row = sheet.getRow(j);
+                cell = row.getCell(i - 65);
+                if (!cell.getStringCellValue().equals("")) {
+                    totalValue += Integer.parseInt(cell.getStringCellValue());
+                }
+            }
+            row = sheet.getRow(countDays + 4);
             cell = row.createCell(i - 65);
-            cell.setCellValue("=SUM(" + i + "5:" + i + (countDays + 4) + ")");
+            cell.setCellValue(totalValue);
+            cell.setCellStyle(style);
         }
         // Save file
-        out = new FileOutputStream(fileLocation + "/" + fileName + ".ods");
+        out = new FileOutputStream(fileLocation + "/" + fileName + ".xlsx");
         workbook.write(out);
         out.close();
     }
@@ -142,35 +163,36 @@ public class ReportGenerator {
     }
     
     private String[] createTableElements(int row, String month, String year) {
-        int monthIndex = getMonthIndex(month);
+        int monthIndex = getMonthIndex(month) + 1, temp;
         String[] elements = new String[24];
         
-        elements[0] = row + "-" + month.substring(0, 3) + "-" + year.substring(year.length() - 2, year.length());
+        elements[0] = (row + 1) + "-" + month.substring(0, 3) + "-" + year.substring(year.length() - 2, year.length());
         elements[1] = getDay(Integer.toString(row + 1), month, year);
-        elements[2] = "";
+        elements[2] = "0";
         elements[3] = Integer.toString(orderController.countSales(row + 1, monthIndex, Integer.parseInt(year)));
-        elements[4] = "";
+        elements[4] = "0";
         elements[5] = Integer.toString(orderController.countDiscount(row + 1, monthIndex, Integer.parseInt(year)));
-        if (elements[5].equals("0")) {
-            elements[5] = "";
-        }
-        elements[6] = "";
-        elements[7] = "=SUM(D" + (row + 5) + "-E" + (row + 5) + "-F" + (row + 5) + "-G" + (row + 5) + ")";
-        elements[8] = "=H" + (row + 5) + "*0.1";
-        elements[9] = "";
-        elements[10] = "=SUM(H" + (row + 5) + "+I" + (row + 5) + "+J" + (row + 5) + ")";
-        elements[11] = "";
-        elements[12] = "";
-        elements[13] = "=SUM(K" + (row + 5) + "-L" + (row + 5) + "+M" + (row + 5) + ")";
+        elements[6] = "0";
+        elements[7] = Integer.toString(Integer.parseInt(elements[3]) - Integer.parseInt(elements[4]) - Integer.parseInt(elements[5]) - Integer.parseInt(elements[6]));
+        elements[8] = Integer.toString(Integer.parseInt(elements[7]) / 10);
+        elements[9] = "0";
+        elements[10] = Integer.toString(Integer.parseInt(elements[7]) + Integer.parseInt(elements[8]) + Integer.parseInt(elements[9]));
+        elements[11] = "0";
+        elements[12] = "0";
+        elements[13] = Integer.toString(Integer.parseInt(elements[10]) - Integer.parseInt(elements[11]) + Integer.parseInt(elements[12]));
         elements[14] = Integer.toString(orderController.countBill(row + 1, monthIndex, Integer.parseInt(year)));
         elements[15] = Integer.toString(orderController.countPax(row + 1, monthIndex, Integer.parseInt(year)));
-        elements[16] = "=SUM(R" + (row + 5) + ":W" + (row + 5) + ")";
         elements[17] = Integer.toString(orderController.countRamenSold(row + 1, monthIndex, Integer.parseInt(year)));
         elements[18] = Integer.toString(orderController.countNasiSold(row + 1, monthIndex, Integer.parseInt(year)));
         elements[19] = Integer.toString(orderController.countToppingSold(row + 1, monthIndex, Integer.parseInt(year)));
         elements[20] = Integer.toString(orderController.countSnackSold(row + 1, monthIndex, Integer.parseInt(year)));
         elements[21] = Integer.toString(orderController.countDessertSold(row + 1, monthIndex, Integer.parseInt(year)));
         elements[22] = Integer.toString(orderController.countMinumanSold(row + 1, monthIndex, Integer.parseInt(year)));
+        temp = 0;
+        for (int i = 17; i <= 22; i++) {
+            temp += Integer.parseInt(elements[i]);
+        }
+        elements[16] = Integer.toString(temp);
         elements[23] = "";
         
         return elements;
