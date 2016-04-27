@@ -5,6 +5,7 @@
  */
 package gui;
 
+import controller.Account;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,12 +13,14 @@ import javax.swing.JOptionPane;
  * @author angelynz95
  */
 public class ChangePasswordPanel extends javax.swing.JPanel {
+    private Account account;
 
     /**
      * Creates new form ChangePasswordPanel
      */
     public ChangePasswordPanel() {
         initComponents();
+        account = new Account();
     }
 
     /**
@@ -105,6 +108,12 @@ public class ChangePasswordPanel extends javax.swing.JPanel {
 
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         // TODO add your handling code here:
+        char[] temp = newPasswordField.getPassword();
+        String newPassword = "";
+        for (int i = 0; i < temp.length; i++) {
+            newPassword += temp[i];
+        }
+        account.changePassword(newPassword);
         JOptionPane.showMessageDialog(null, "Pengubahan kata sandi berhasil");
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 

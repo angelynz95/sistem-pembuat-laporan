@@ -168,6 +168,15 @@ public class GenerateReportPanel extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(GenerateReportPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MainFrame frame = MainFrame.getInstance();
+        frame.setContentPane(new ReportGeneratedPanel(month, year));
+        frame.pack();
+        frame.setVisible(true);
+        /*
+        ReportGeneratedPanel ReportGenerated = new ReportGeneratedPanel();
+        ReportGenerated.setMonthandYear(month, year);
+        ReportGenerated.setVisible(true);
+*/
     }//GEN-LAST:event_generateReportButtonActionPerformed
 
     private void monthComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboBoxActionPerformed

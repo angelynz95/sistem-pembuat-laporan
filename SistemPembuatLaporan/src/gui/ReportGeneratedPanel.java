@@ -6,20 +6,27 @@
 package gui;
 
 import javax.swing.JOptionPane;
+import controller.OrderController;
 
 /**
  *
  * @author angelynz95
  */
-public class ChangePasswordPanel extends javax.swing.JPanel {
+public class ReportGeneratedPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ChangePasswordPanel
      */
-    public ChangePasswordPanel() {
+    private OrderController ordercontroller;
+    private String month;
+    private String year;
+    public ReportGeneratedPanel(String _month, String _year) {
         initComponents();
+        ordercontroller = new OrderController();
+        month = _month;
+        year = _year;
+        MonthYear.setText(month + "/" + year);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,93 +36,307 @@ public class ChangePasswordPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        oldPasswordLabel = new javax.swing.JLabel();
-        newPasswordLabel = new javax.swing.JLabel();
-        newPasswordConfirmationLabel = new javax.swing.JLabel();
-        changePasswordButton = new javax.swing.JButton();
-        oldPasswordField = new javax.swing.JPasswordField();
-        newPasswordField = new javax.swing.JPasswordField();
-        newPasswordConfirmationField = new javax.swing.JPasswordField();
+        FinishButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        DayComboBox = new javax.swing.JComboBox<>();
+        MonthYear = new javax.swing.JLabel();
+        RamenTextField = new javax.swing.JLabel();
+        NasiTextField = new javax.swing.JLabel();
+        TopingTextField = new javax.swing.JLabel();
+        SnackTextField = new javax.swing.JLabel();
+        DessertTextField = new javax.swing.JLabel();
+        MinumanTextField = new javax.swing.JLabel();
+        TotalSoldItemTextField = new javax.swing.JLabel();
+        DiscountTextField = new javax.swing.JLabel();
+        NetSalesTextField = new javax.swing.JLabel();
 
-        oldPasswordLabel.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        oldPasswordLabel.setText("Kata Sandi Lama");
-
-        newPasswordLabel.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        newPasswordLabel.setText("Kata Sandi Baru");
-
-        newPasswordConfirmationLabel.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        newPasswordConfirmationLabel.setText("Konfirmasi Kata Sandi Baru");
-
-        changePasswordButton.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        changePasswordButton.setText("Ubah");
-        changePasswordButton.addActionListener(new java.awt.event.ActionListener() {
+        FinishButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        FinishButton.setText("Finish");
+        FinishButton.setActionCommand("FinishButton");
+        FinishButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changePasswordButtonActionPerformed(evt);
+                FinishButtonActionPerformed(evt);
             }
         });
 
-        oldPasswordField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Report Generated");
 
-        newPasswordField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Ramen");
 
-        newPasswordConfirmationField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Nasi");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Toping");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Snack");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("Dessert");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Minuman");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("Discount Redeem");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setText("Net Sales");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setText("Total Sold Item");
+
+        DayComboBox.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        DayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        DayComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DayComboBoxActionPerformed(evt);
+            }
+        });
+
+        MonthYear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        MonthYear.setText("Month / Year");
+
+        RamenTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        NasiTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        TopingTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        SnackTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        DessertTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        MinumanTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        TotalSoldItemTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        DiscountTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        NetSalesTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(661, Short.MAX_VALUE)
+                .addComponent(FinishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(475, 475, 475))
             .addGroup(layout.createSequentialGroup()
-                .addGap(324, 324, 324)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(changePasswordButton))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(RamenTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NasiTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TopingTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SnackTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DessertTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MinumanTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TotalSoldItemTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DiscountTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NetSalesTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newPasswordConfirmationLabel)
-                            .addComponent(newPasswordLabel)
-                            .addComponent(oldPasswordLabel))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newPasswordField)
-                            .addComponent(newPasswordConfirmationField, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(oldPasswordField))))
-                .addGap(328, 328, 328))
+                        .addGap(8, 8, 8)
+                        .addComponent(DayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(MonthYear, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(210, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(oldPasswordLabel)
-                    .addComponent(oldPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MonthYear, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RamenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newPasswordLabel)
-                    .addComponent(newPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NasiTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newPasswordConfirmationLabel)
-                    .addComponent(newPasswordConfirmationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addComponent(changePasswordButton)
-                .addGap(133, 133, 133))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TopingTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SnackTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DessertTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MinumanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TotalSoldItemTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(DiscountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(NetSalesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
+                .addGap(27, 27, 27)
+                .addComponent(FinishButton)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
+    private void DayComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DayComboBoxActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Pengubahan kata sandi berhasil");
-    }//GEN-LAST:event_changePasswordButtonActionPerformed
+        int selectedItem = Integer.parseInt(DayComboBox.getSelectedItem().toString());
+        boolean isDayValid;
+        switch (month) {
+            case "Januari":
+            case "Maret":
+            case "Mei":
+            case "Juli":
+            case "Agustus":
+            case "Oktober":
+            case "Desember":
+                isDayValid = (selectedItem <= 31);
+                break;
+            case "April":
+            case "Juni":
+            case "September":
+            case "November":
+                isDayValid = (selectedItem <= 30);
+                break;
+            default:
+                if (Integer.parseInt(year) % 4 == 0) {
+                    isDayValid = (selectedItem <= 29);
+                } else {
+                    isDayValid = (selectedItem <= 28);
+                }
+                break;
+        }
+        int monthIndex;
+        int yearIndex = Integer.parseInt(year);
+        switch (month) {
+            case "Januari":
+                monthIndex = 0;
+                break;
+            case "Maret":
+                monthIndex = 2;
+                break;
+            case "Mei":
+                monthIndex = 4;
+                break;
+            case "Juli":
+                monthIndex = 6;
+                break;
+            case "Agustus":
+                monthIndex = 7;
+                break;
+            case "Oktober":
+                monthIndex = 9;
+                break;
+            case "Desember":
+                monthIndex = 11;
+                break;
+            case "April":
+                monthIndex = 3;
+                break;
+            case "Juni":
+                monthIndex = 5;
+                break;
+            case "September":
+                monthIndex = 8;
+                break;
+            case "November":
+                monthIndex = 10;
+                break;
+            default:
+                monthIndex = 1;
+                break;
+        }
+        monthIndex++;
+        if (isDayValid){
+            RamenTextField.setText(String.valueOf(ordercontroller.countRamenSold(selectedItem, monthIndex, yearIndex))); //done
+            NasiTextField.setText(String.valueOf(ordercontroller.countNasiSold(selectedItem, monthIndex, yearIndex))); //done
+            TopingTextField.setText(String.valueOf(ordercontroller.countToppingSold(selectedItem, monthIndex, yearIndex))); //done
+            SnackTextField.setText(String.valueOf(ordercontroller.countSnackSold(selectedItem, monthIndex, yearIndex))); //done
+            DessertTextField.setText(String.valueOf(ordercontroller.countDessertSold(selectedItem, monthIndex, yearIndex)));   //done         
+            MinumanTextField.setText(String.valueOf(ordercontroller.countMinumanSold(selectedItem, monthIndex, yearIndex))); //done
+            TotalSoldItemTextField.setText(String.valueOf(ordercontroller.countRamenSold(selectedItem, monthIndex, yearIndex)+ordercontroller.countNasiSold(selectedItem, monthIndex, yearIndex)+ordercontroller.countToppingSold(selectedItem, monthIndex, yearIndex)+ordercontroller.countSnackSold(selectedItem, monthIndex, yearIndex)+ordercontroller.countDessertSold(selectedItem, monthIndex, yearIndex)+ordercontroller.countMinumanSold(selectedItem, monthIndex, yearIndex))); 
+            DiscountTextField.setText(String.valueOf(ordercontroller.countDiscount(selectedItem, monthIndex, yearIndex))); //done 
+            NetSalesTextField.setText(String.valueOf(ordercontroller.countSales(selectedItem, monthIndex, yearIndex))); //done            
+        }
+    }//GEN-LAST:event_DayComboBoxActionPerformed
+
+    private void FinishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinishButtonActionPerformed
+        // TODO add your handling code here:
+        MainFrame frame = MainFrame.getInstance();
+        frame.setContentPane(new MenuPanel());
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_FinishButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton changePasswordButton;
-    private javax.swing.JPasswordField newPasswordConfirmationField;
-    private javax.swing.JLabel newPasswordConfirmationLabel;
-    private javax.swing.JPasswordField newPasswordField;
-    private javax.swing.JLabel newPasswordLabel;
-    private javax.swing.JPasswordField oldPasswordField;
-    private javax.swing.JLabel oldPasswordLabel;
+    private javax.swing.JComboBox<String> DayComboBox;
+    private javax.swing.JLabel DessertTextField;
+    private javax.swing.JLabel DiscountTextField;
+    private javax.swing.JButton FinishButton;
+    private javax.swing.JLabel MinumanTextField;
+    private javax.swing.JLabel MonthYear;
+    private javax.swing.JLabel NasiTextField;
+    private javax.swing.JLabel NetSalesTextField;
+    private javax.swing.JLabel RamenTextField;
+    private javax.swing.JLabel SnackTextField;
+    private javax.swing.JLabel TopingTextField;
+    private javax.swing.JLabel TotalSoldItemTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

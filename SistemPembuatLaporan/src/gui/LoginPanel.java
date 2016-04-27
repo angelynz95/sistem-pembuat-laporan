@@ -1,5 +1,8 @@
 package gui;
 
+import controller.Account;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,12 +14,14 @@ package gui;
  * @author angelynz95
  */
 public class LoginPanel extends javax.swing.JPanel {
+    private Account account;
 
     /**
      * Creates new form LoginPanel
      */
     public LoginPanel() {
         initComponents();
+        account = new Account();
     }
 
     /**
@@ -84,10 +89,14 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        MainFrame frame = MainFrame.getInstance();
-        frame.setContentPane(new MenuPanel());
-        frame.pack();
-        frame.setVisible(true);
+        if (account.validateLogin(passwordField.getPassword())) {
+            MainFrame frame = MainFrame.getInstance();
+            frame.setContentPane(new MenuPanel());
+            frame.pack();
+            frame.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Kata sandi salah");
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
 
